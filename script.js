@@ -49,7 +49,9 @@ function init() {
  Returns a Promise that resolves with the meal object
  */
 function fetchRandomMeal() {
-    // Fill in
+  return fetch('https://www.themealdb.com/api/json/v1/1/random.php')
+  .then((response) => response.json())
+  .then((data) => {return data.meals[0]});
 }
 
 /*
@@ -59,7 +61,42 @@ Receives a meal object with fields like:
   strIngredientX, strMeasureX, etc.
 */
 function displayMealData(meal) {
-    // Fill in
+  //Henter ut id meal-conteiner fra div i HTML, og lager nye objekter 
+  let container = document.getElementById("meal-container");
+
+  let name = document.createElement('p')
+  name.innerHTML = 'Name: ' + meal.strMeal; 
+
+  let image = document.createElement('img')
+  image.src = meal.strMealThumb; 
+
+  let category = document.createElement('p')
+  category.innerHTML = 'Category: ' + meal.strCategory;
+
+  let instuctions = document.createElement('p')
+  instuctions.innerHTML = meal.strInstructions;
+
+  // henter ut ingredienser og mål
+  let inglist = document.createElement('ul')
+
+  for(let i = 1; i < 20; i++) {
+    if ( meal['strIngredient' + i] == "") {
+      break
+    }
+    let li = document.createElement('li')
+    li.innerHTML = meal['strMeasure' + i] + ' ' + meal['strIngredient' + i]
+    inglist.append(li)
+  }
+
+  //Tar vekk teksten som står i diven meal-container i HTML dokumentet
+  container.innerHTML = "";
+
+  //Legger til elementene i conteiner
+    container.append(name);
+    container.append(image);
+    container.append(category);
+    container.append(inglist);
+    container.append(instuctions);
 }
 
 /*
