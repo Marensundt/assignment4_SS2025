@@ -80,7 +80,7 @@ function displayMealData(meal) {
   let inglist = document.createElement('ul')
 
   for(let i = 1; i < 20; i++) {
-    if ( meal['strIngredient' + i] == "") {
+    if ( meal['strIngredient' + i] == "" || meal['strIngredient' + i] == null) {
       break
     }
     let li = document.createElement('li')
