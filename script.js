@@ -116,7 +116,10 @@ Don't forget encodeURIComponent()
 If no cocktails found, fetch random
 */
 function fetchCocktailByDrinkIngredient(drinkIngredient) {
-    // Fill in
+  return fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=' + drinkIngredient)
+  .then((response) =>response.json())
+  .then((data) => {return data.drinks[0]})
+  .catch(() => {return fetchRandomCocktail()})
 }
 
 /*
@@ -124,14 +127,44 @@ Fetch a Random Cocktail (backup in case nothing is found by the search)
 Returns a Promise that resolves to cocktail object
 */
 function fetchRandomCocktail() {
-    // Fill in
+return fetch('https://www.thecocktaildb.com/api/json/v1/1/random.php')
+  .then((response) =>response.json())
+  .then((data) => {return data.drinks[0]})
 }
 
 /*
 Display Cocktail Data in the DOM
 */
 function displayCocktailData(cocktail) {
-    // Fill in
+let container = document.getElementById('cocktail-container');
+
+let name = document.createElement('h2')
+name.innerHTML = 'Name: ' + cocktail.strDrink;
+
+let image = document.createElement('img')
+image.src = cocktail.strDrinkThumb;
+
+let ingredients = document.createElement('ul')
+
+for (let i = 1; i < 15; i++){
+  if ( cocktail['strIngredient' + i] == "" || cocktail['strIngredient' + i] == null) {
+    break
+  }
+  let li = document.createElement('li')
+  li.innerHTML = cocktail['strMeasure' + i] + ' ' + cocktail['strIngredient' + i]
+  ingredients.append(li)
+}
+
+let instructions = document.createElement('p')
+instructions.innerHTML = cocktail.strInstructions;
+
+container.innerHTML = "";
+
+container.append(name)
+container.append(image);
+container.append(ingredients);
+container.append(instructions);
+
 }
 
 /*
