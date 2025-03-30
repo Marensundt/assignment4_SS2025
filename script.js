@@ -64,7 +64,7 @@ function displayMealData(meal) {
   //Henter ut id meal-conteiner fra div i HTML, og lager nye objekter 
   let container = document.getElementById("meal-container");
 
-  let name = document.createElement('p')
+  let name = document.createElement('h2')
   name.innerHTML = 'Name: ' + meal.strMeal; 
 
   let image = document.createElement('img')
