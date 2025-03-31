@@ -171,5 +171,3 @@ container.append(instructions);
 Call init() when the page loads
 */
 window.onload = init;
-
-// Test her
