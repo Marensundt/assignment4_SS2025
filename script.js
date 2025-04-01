@@ -116,7 +116,8 @@ Don't forget encodeURIComponent()
 If no cocktails found, fetch random
 */
 function fetchCocktailByDrinkIngredient(drinkIngredient) {
-  return fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=' + drinkIngredient)
+  const drinkIngr = encodeURIComponent(drinkIngredient)
+  return fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=' + drinkIngr)
   .then((response) =>response.json())
   .then((data) => {return data.drinks[0]})
   .catch(() => {return fetchRandomCocktail()})
