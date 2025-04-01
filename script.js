@@ -65,7 +65,7 @@ function displayMealData(meal) {
   let container = document.getElementById("meal-container");
 
   let name = document.createElement('h2')
-  name.innerHTML = 'Name: ' + meal.strMeal; 
+  name.innerHTML = meal.strMeal; 
 
   let image = document.createElement('img')
   image.src = meal.strMealThumb; 
@@ -139,7 +139,7 @@ function displayCocktailData(cocktail) {
 let container = document.getElementById('cocktail-container');
 
 let name = document.createElement('h2')
-name.innerHTML = 'Name: ' + cocktail.strDrink;
+name.innerHTML = cocktail.strDrink;
 
 let image = document.createElement('img')
 image.src = cocktail.strDrinkThumb;
