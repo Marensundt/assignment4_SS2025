@@ -80,7 +80,7 @@ function displayMealData(meal) {
   let inglist = document.createElement('ul')
 
   for(let i = 1; i < 20; i++) {
-    if ( meal['strIngredient' + i] == "" || meal['strIngredient' + i] == null) {
+    if (!meal['strIngredient' + i]) {
       break
     }
     let li = document.createElement('li')
@@ -147,7 +147,7 @@ image.src = cocktail.strDrinkThumb;
 let ingredients = document.createElement('ul')
 
 for (let i = 1; i < 15; i++){
-  if ( cocktail['strIngredient' + i] == "" || cocktail['strIngredient' + i] == null) {
+  if (!cocktail['strIngredient' + i]) {
     break
   }
   let li = document.createElement('li')
